@@ -45,7 +45,7 @@ function jump () {
         source={
           background
             }/>
-      {gameOver === 'true' && <Text style={{fontSize: '50px'}}> Score: {score}</Text>}
+      {gameOver === 'true' && <Text style={{fontSize: '50px', position: 'absolute'}}> Score: {score}</Text>}
       <Bird birdLeftSide={birdLeftSide} birdBottom={birdBottom} />
       <Obstacles screenWidth={screenWidth} screenHeight={screenHeight} birdBottom={birdBottom} setGameOver={setGameOver} setScore={setScore}/>
     </View>
