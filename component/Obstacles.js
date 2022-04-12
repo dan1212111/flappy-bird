@@ -1,76 +1,77 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Image } from "react-native"
 import { useState, useEffect } from "react"
+import pipe from '/Users/danielmccarthy/my_app/images/flappy-bird-pipe-png.png'
+import pipeReversed from '/Users/danielmccarthy/my_app/images/flappy-bird-pipe-reversed.png'
 
 export default function Obstacles(props) {
-const { screenWidth, screenHeight, birdBottom, setGameOver, setScore } = props
-const [obstacles, setObstacles] = useState(screenWidth)
-const [obstaclesTwo, setObstaclesTwo] = useState(screenWidth + screenWidth/2 + 30)
-const [obstaclesHeightNeg, setObstaclesHeightNeg] = useState(0)
-const [obstaclesHeightNegTwo, setObstaclesHeightNegTwo] = useState(0)
-const obstacleWidth = 60
-const obstacleHeight = 300
-const gap = 200
-let obstacleLeftTimer
-let obstacleLeftTimerTwo
+  const { screenWidth, birdBottom, setGameOver, setScore } = props
+  const [obstaclesOne, setObstacles] = useState(screenWidth)
+  const [obstaclesTwo, setObstaclesTwo] = useState(
+    screenWidth + screenWidth / 2 + 30
+  )
+  const [obstaclesHeightNeg, setObstaclesHeightNeg] = useState(0)
+  const [obstaclesHeightNegTwo, setObstaclesHeightNegTwo] = useState(0)
+  const obstacleWidth = 60
+  const obstacleHeight = 300
+  const gap = 200
+  let obstacleTimerOne
+  let obstacleTimerTwo
 
   // ONE
   useEffect(() => {
-    if (obstacles > -obstacleWidth) {
-      obstacleLeftTimer = setInterval(() => {
-        setObstacles((obstacles) => obstacles - 5)
+    if (obstaclesOne > -obstacleWidth) {
+      obstacleTimerOne = setInterval(() => {
+        setObstacles((obstaclesOne) => obstaclesOne - 5)
       }, 30)
       return () => {
-        clearInterval(obstacleLeftTimer)
+        clearInterval(obstacleTimerOne)
       }
     } else {
       setObstacles(screenWidth)
-      setObstaclesHeightNeg( - Math.random() * 100)
-      setScore(score => score + 1)
+      setObstaclesHeightNeg(-Math.random() * 100)
+      setScore((score) => score + 1)
     }
-  }, [obstacles])
+  }, [obstaclesOne])
 
   //TWO
   useEffect(() => {
     if (obstaclesTwo > -obstacleWidth) {
-      obstacleLeftTimerTwo = setInterval(() => {
+      obstacleTimerTwo = setInterval(() => {
         setObstaclesTwo((obstaclesTwo) => obstaclesTwo - 5)
       }, 30)
       return () => {
-        clearInterval(obstacleLeftTimerTwo)
+        clearInterval(obstacleTimerTwo)
       }
     } else {
       setObstaclesTwo(screenWidth)
-      setObstaclesHeightNegTwo( - Math.random() * 100)
-      setScore(score => score + 1)
+      setObstaclesHeightNegTwo(-Math.random() * 100)
+      setScore((score) => score + 1)
     }
   }, [obstaclesTwo])
 
   //check for collisions
   useEffect(() => {
     if (
-      ((birdBottom < (obstaclesHeightNeg + obstacleHeight + 30) ||
-      birdBottom > (obstaclesHeightNeg + obstacleHeight + gap -30)) &&
-      (obstacles > screenWidth/2 -30 && obstacles < screenWidth/2 + 30 )
-      )
-      || 
-      ((birdBottom < (obstaclesHeightNegTwo + obstacleHeight + 30) ||
-      birdBottom > (obstaclesHeightNegTwo + obstacleHeight + gap -30)) &&
-      (obstaclesTwo > screenWidth/2 -30 && obstaclesTwo < screenWidth/2 + 30 )
-      )
-      ) 
-      {
-      console.log('game over')
-      gameOver()
+      ((birdBottom < obstaclesHeightNeg + obstacleHeight + 30 ||
+        birdBottom > obstaclesHeightNeg + obstacleHeight + gap - 30) &&
+        obstaclesOne > screenWidth / 2 - 30 &&
+        obstaclesOne < screenWidth / 2 + 30) ||
+      ((birdBottom < obstaclesHeightNegTwo + obstacleHeight + 30 ||
+        birdBottom > obstaclesHeightNegTwo + obstacleHeight + gap - 30) &&
+        obstaclesTwo > screenWidth / 2 - 30 &&
+        obstaclesTwo < screenWidth / 2 + 30)
+    ) {
+      console.log("game over")
+      gameIsOver()
     }
   })
 
-const gameOver = () => {
-  setGameOver(true)
-  clearInterval(obstacleLeftTimer)
-  clearInterval(obstacleLeftTimerTwo) 
-}
-
+  function gameIsOver() {
+    setGameOver("true")
+    clearInterval(obstacleTimerOne)
+    clearInterval(obstacleTimerTwo)
+  }
 
   return (
     <>
@@ -79,21 +80,42 @@ const gameOver = () => {
           position: "absolute",
           backgroundColor: "green",
           width: obstacleWidth,
-          height: 500,
-          left: obstacles,
+          height: 500 ,
+          left: obstaclesOne,
           bottom: obstaclesHeightNeg + obstacleHeight + gap,
         }}
-      />
+      ><Image source={pipeReversed} style={{width: obstacleWidth, height: 500}} /></View>
       <View
         style={{
           position: "absolute",
           backgroundColor: "green",
           width: obstacleWidth,
           height: obstacleHeight,
-          left: obstacles,
-          bottom:  obstaclesHeightNegTwo,
+          left: obstaclesOne,
+          bottom: obstaclesHeightNeg,
         }}
-      />
+      ><Image source={pipe} style={{width: obstacleWidth, height: 500}} /></View>
+
+       <View
+        style={{
+          position: "absolute",
+          backgroundColor: "red",
+          width: obstacleWidth,
+          height: 500 ,
+          left: obstaclesTwo,
+          bottom: obstaclesHeightNegTwo + obstacleHeight + gap,
+        }}
+      ><Image source={pipeReversed} style={{width: obstacleWidth, height: 500}} /></View>
+      <View
+        style={{
+          position: "absolute",
+          backgroundColor: "red",
+          width: obstacleWidth,
+          height: obstacleHeight,
+          left: obstaclesTwo,
+          bottom: obstaclesHeightNegTwo,
+        }}
+      ><Image source={pipe} style={{width: obstacleWidth, height: 500}} /></View>
     </>
   )
-      }
+}
