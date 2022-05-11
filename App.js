@@ -15,6 +15,7 @@ export default function App() {
   const [score, setScore] = useState(0)
   const gravity = 3
   let timer
+  const scoreBoard = {fontSize: '50px', position: 'absolute', paddingTop: '50%', paddingLeft: '15%', color: 'white'}
 
   /* making bird fall */
   useEffect(() => {
@@ -45,7 +46,7 @@ function jump () {
         source={
           Background
             }/>
-      {gameOver === 'true' && <Text style={{fontSize: '50px', position: 'absolute'}}> Score: {score}</Text>}
+      {gameOver === 'true' && <Text style={scoreBoard}> Score: {score}</Text>}
       <Bird birdLeftSide={birdLeftSide} birdBottom={birdBottom} />
       <Obstacles screenWidth={screenWidth} screenHeight={screenHeight} birdBottom={birdBottom} setGameOver={setGameOver} setScore={setScore}/>
     </View>
@@ -56,9 +57,5 @@ function jump () {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
-    // backgroundColor: 'white',
-    // alignItems: "center",
-    // justifyContent: "center",
   },
 })

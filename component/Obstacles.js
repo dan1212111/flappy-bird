@@ -78,7 +78,6 @@ export default function Obstacles(props) {
       <View
         style={{
           position: "absolute",
-          backgroundColor: "green",
           width: obstacleWidth,
           height: 500 ,
           left: obstaclesOne,
@@ -88,7 +87,6 @@ export default function Obstacles(props) {
       <View
         style={{
           position: "absolute",
-          backgroundColor: "green",
           width: obstacleWidth,
           height: obstacleHeight,
           left: obstaclesOne,
