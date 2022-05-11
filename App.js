@@ -15,7 +15,7 @@ export default function App() {
   const [score, setScore] = useState(0)
   const gravity = 3
   let timer
-  const scoreBoard = {fontSize: '50px', position: 'absolute', paddingTop: '50%', paddingLeft: '15%', color: 'white'}
+  const scoreBoard = {fontSize: '50px', position: 'absolute', paddingTop: '50%', paddingLeft: '15%', color: 'white', zIndex: 1}
 
   /* making bird fall */
   useEffect(() => {
