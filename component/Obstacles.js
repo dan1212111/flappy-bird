@@ -1,8 +1,8 @@
 import React from "react"
 import { View, Image } from "react-native"
 import { useState, useEffect } from "react"
-import pipe from '/Users/danielmccarthy/my_app/images/flappy-bird-pipe-png.png'
-import pipeReversed from '/Users/danielmccarthy/my_app/images/flappy-bird-pipe-reversed.png'
+import Pipe from "/Users/danielmccarthy/flappy-bird/component/images/flappy-bird-pipe-png.png"
+import PipeReversed from '/Users/danielmccarthy/flappy-bird/component/images/flappy-bird-pipe-reversed.png'
 
 export default function Obstacles(props) {
   const { screenWidth, birdBottom, setGameOver, setScore } = props
@@ -84,7 +84,7 @@ export default function Obstacles(props) {
           left: obstaclesOne,
           bottom: obstaclesHeightNeg + obstacleHeight + gap,
         }}
-      ><Image source={pipeReversed} style={{width: obstacleWidth, height: 500}} /></View>
+      ><Image source={PipeReversed} style={{width: obstacleWidth, height: 500}} /></View>
       <View
         style={{
           position: "absolute",
@@ -94,7 +94,7 @@ export default function Obstacles(props) {
           left: obstaclesOne,
           bottom: obstaclesHeightNeg,
         }}
-      ><Image source={pipe} style={{width: obstacleWidth, height: 500}} /></View>
+      ><Image source={Pipe} style={{width: obstacleWidth, height: 500}} /></View>
 
        <View
         style={{
@@ -105,7 +105,7 @@ export default function Obstacles(props) {
           left: obstaclesTwo,
           bottom: obstaclesHeightNegTwo + obstacleHeight + gap,
         }}
-      ><Image source={pipeReversed} style={{width: obstacleWidth, height: 500}} /></View>
+      ><Image source={PipeReversed} style={{width: obstacleWidth, height: 500}} /></View>
       <View
         style={{
           position: "absolute",
@@ -115,7 +115,7 @@ export default function Obstacles(props) {
           left: obstaclesTwo,
           bottom: obstaclesHeightNegTwo,
         }}
-      ><Image source={pipe} style={{width: obstacleWidth, height: 500}} /></View>
+      ><Image source={Pipe} style={{width: obstacleWidth, height: 500}} /></View>
     </>
   )
 }

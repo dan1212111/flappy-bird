@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback, ImageBackground } from "react-native"
 import Bird from "./component/Bird"
 import Obstacles from "./component/Obstacles"
-import background from "/Users/danielmccarthy/my_app/images/flappy-bird-background.png"
+import Background from "./component/images/flappy-bird-background.png"
 
 export default function App() {
   const screenWidth = Dimensions.get("screen").width
@@ -43,7 +43,7 @@ function jump () {
     <ImageBackground
         style={{flex: 1}}
         source={
-          background
+          Background
             }/>
       {gameOver === 'true' && <Text style={{fontSize: '50px', position: 'absolute'}}> Score: {score}</Text>}
       <Bird birdLeftSide={birdLeftSide} birdBottom={birdBottom} />

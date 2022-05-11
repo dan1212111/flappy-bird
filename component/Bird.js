@@ -1,6 +1,6 @@
 import React from "react"
 import { View, Image } from "react-native"
-import bird from '/Users/danielmccarthy/my_app/images/flappy-bird-transparentBackground.png'
+import BirdImage from "/Users/danielmccarthy/flappy-bird/component/images/flappy-bird-transparentBackground.png"
 
 export default function Bird(props) {
   const { birdLeftSide, birdBottom } = props
@@ -16,6 +16,6 @@ export default function Bird(props) {
         left: birdLeftSide - (birdWidth/2),
         bottom: birdBottom - (birdHeight/2),
       }}
-    ><Image source={bird} style={{width: 50, height: 50}} /></View>
+    ><Image source={BirdImage} style={{width: 50, height: 50}} /></View>
   )
 }
