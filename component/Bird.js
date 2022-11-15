@@ -19,3 +19,5 @@ export default function Bird(props) {
     ><Image source={BirdImage} style={{width: 50, height: 50}} /></View>
   )
 }
+
+//Bird 
